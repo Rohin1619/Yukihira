@@ -3,12 +3,13 @@ export const styles = {
         background: 'url(theme.jpg)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
-        height: '100vh',
+        // backgroundAttachment: 'fixed',
+        // height: 'calc(100vh - 80px)',
         boxSizing: 'border-box',
         padding: '0',
         margin: '0',
-        position: 'relative'
+        position: 'relative',
+        overflowY: 'hidden'
 
 
     },

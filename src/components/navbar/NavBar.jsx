@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -10,7 +9,6 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 
@@ -23,7 +21,7 @@ const pages = [
   },
   {
     label: 'Menu',
-    link: '/',
+    link: '/menu',
   },
   {
     label: 'Contact',
@@ -41,6 +39,7 @@ const NavBar = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -48,10 +47,14 @@ const NavBar = () => {
 
   return (
     <Box style={styles.root}>
-      <AppBar position="static" >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters sx={ { xs: 'flex' } }>
-            <Avatar alt="Remy Sharp" src="/WLogo.png" />
+      <AppBar position="static" sx={ styles.appbar }>
+        <Container maxWidth="xl" >
+          <Toolbar disableGutters sx={ { display: 'flex', justifyContent: 'space-between' } }>
+            <img
+              src="/WLogo.png"
+              alt="Centered Image"
+              style={ styles.image }
+            />
             <Typography
               variant="h5"
               noWrap
@@ -70,8 +73,21 @@ const NavBar = () => {
             >
               Yukihira Family Dine
             </Typography>
+            <Box sx={ { flexGrow: 1, display: { xs: 'none', md: 'flex' } } }>
+              { pages.map((page) => (
+                <Button
+                variant='text' 
+                  href="/"
+                  key={ page.label }
+                  onClick={ handleCloseNavMenu }
+                  sx={ styles.menu }
+                >
+                  { page.label }
+                </Button>
+              )) }
+              </Box>
 
-            <Box sx={ { flexGrow: 1, display: { xs: 'flex', md: 'none' } } }>
+            <Box>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -79,6 +95,7 @@ const NavBar = () => {
                 aria-haspopup="true"
                 onClick={ handleOpenNavMenu }
                 color="inherit"
+                sx={ { display: { xs: 'flex', md: 'none', ml:0 } } }
               >
                 <MenuIcon />
               </IconButton>
@@ -102,7 +119,7 @@ const NavBar = () => {
               >
                 { pages.map((page) => (
                   <MenuItem key={ page.label } onClick={ handleCloseNavMenu }>
-                    <Typography textAlign="center">{ page.label }</Typography>
+                    <Typography textAlign="center" >{ page.label }</Typography>
                   </MenuItem>
                 )) }
               </Menu>
