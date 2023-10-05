@@ -21,8 +21,14 @@ export const styles = {
     grid2: {
         padding: 0,
         marginRight: '0px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
 
+    },
+
+    sideimg:{
+        objectFit:'cover',
+        width: '100%',
+        height: '100%'
     },
 
     text: {

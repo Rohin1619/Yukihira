@@ -9,6 +9,7 @@ import { styles } from './styles';
 
 const Products = () => {
     const foodProductsArray = Object.values(foodProducts).flatMap((category) => category);
+    const beverageProductsArray = Object.values(beverageProducts).flatMap((category) => category)
     return (
         <>
         <Box sx={styles.root}>

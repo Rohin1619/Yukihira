@@ -23,7 +23,7 @@ export const styles = {
     },
 
     btn1: {
-        backgroundcolor: '#4CAF50',
+        backgroundcolor: '#00C9DF',
         width: '200px',
         padding: '10px'
     }

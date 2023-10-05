@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,9 +10,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
 
+import CartDialog from '../dialog/cartDialog';
 
 import { styles } from './styles'
+
 
 const pages = [
   {
@@ -35,21 +39,28 @@ const pages = [
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  
+
+  const handleClickOpenDialog = () => {
+    setOpen(true);
+  };
+  const handleCloseDialog = () => {
+    setOpen(false);
+  };
 
   return (
-    <Box style={styles.root}>
+    <Box sx={ styles.root }>
       <AppBar position="static" sx={ styles.appbar }>
-        <Container maxWidth="xl" style={styles.container} >
-          <Toolbar disableGutters sx={ { display: 'flex', justifyContent: 'space-between' } }>
+        <Container maxWidth="xl" sx={ styles.container } >
+          <Toolbar disableGutters sx={ { display: 'flex', justifyContent: 'space-between', width: '95vw' } }>
             <img
               src="/WLogo.png"
               alt="Centered Image"
@@ -60,23 +71,14 @@ const NavBar = () => {
               noWrap
               component="a"
               href="/"
-              sx={ {
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              } }
+              sx={ styles.title1 }
             >
               Yukihira Family Dine
             </Typography>
             <Box sx={ { flexGrow: 1, display: { xs: 'none', md: 'flex' } } }>
               { pages.map((page) => (
                 <Button
-                variant='text' 
+                  variant='text'
                   href="/"
                   key={ page.label }
                   onClick={ handleCloseNavMenu }
@@ -85,8 +87,7 @@ const NavBar = () => {
                   { page.label }
                 </Button>
               )) }
-              </Box>
-
+            </Box>
             <Box>
               <IconButton
                 size="large"
@@ -95,7 +96,7 @@ const NavBar = () => {
                 aria-haspopup="true"
                 onClick={ handleOpenNavMenu }
                 color="inherit"
-                sx={ { display: { xs: 'flex', md: 'none', ml:0 } } }
+                sx={ { display: { xs: 'flex', md: 'none', ml: 0 } } }
               >
                 <MenuIcon />
               </IconButton>
@@ -124,9 +125,19 @@ const NavBar = () => {
                 )) }
               </Menu>
             </Box>
+            <IconButton
+              aria-label="cart"
+              sx={ styles.iconbtn }
+              onClick={handleClickOpenDialog}
+              >
+              <Badge badgeContent={ 2 } color="secondary">
+                <ShoppingCartIcon sx={ styles.cart } />
+              </Badge>
+            </IconButton>
           </Toolbar>
         </Container>
       </AppBar>
+      <CartDialog open={ open } onClose={ handleCloseDialog } />
     </Box>
   )
 }

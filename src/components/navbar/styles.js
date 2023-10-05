@@ -2,11 +2,24 @@ export const styles = {
     root: {
         margin: 0,
         padding: 0,
-        backgroundColor: '#191919',
+        backgroundColor: '#191919'
     },
-    headingStyles: {
-        fontSize: '12px'
+
+    title1: {
+        marginRight: 2,
+        display: {
+            xs: 'flex',
+            md: 'none'
+        },
+        flexGrow: 1,
+        fontFamily: 'monospace',
+        fontWeight: 700,
+        letterSpacing: '.3rem',
+        color: 'inherit',
+        textDecoration: 'none'
+
     },
+
 
     appbar: {
         backgroundColor: '#191919',
@@ -25,8 +38,21 @@ export const styles = {
         display: 'block',
         m: 2
     },
-    
-    container:{
+
+    container: {
         marginLeft: '0px',
+        marginRight: '0px'
+    },
+
+    cart: {
+        color: '#ebf5cf',
+        marginLeft: 'auto'
+    },
+
+    iconbtn: {
+        display: 'flex',
+        alignItems: 'center'
+
     }
+
 }

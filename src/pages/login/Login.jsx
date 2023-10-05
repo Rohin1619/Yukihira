@@ -12,8 +12,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton';
-import { Typography } from '@mui/material';
-import Link from '@mui/material/Link';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
@@ -45,10 +43,6 @@ const Login = () => {
         }
     };
 
-    const handleclickSignUp = () => {
-        navigate("/signup")
-    }
-
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -56,7 +50,6 @@ const Login = () => {
         setSnackbarOpen(false);
     };
 
-    const label = { inputProps: { 'aria-label': 'Forgot Password' } };
     return (
         <>
             <CssBaseline />
