@@ -48,7 +48,7 @@ const NavBar = () => {
   return (
     <Box style={styles.root}>
       <AppBar position="static" sx={ styles.appbar }>
-        <Container maxWidth="xl" >
+        <Container maxWidth="xl" style={styles.container} >
           <Toolbar disableGutters sx={ { display: 'flex', justifyContent: 'space-between' } }>
             <img
               src="/WLogo.png"

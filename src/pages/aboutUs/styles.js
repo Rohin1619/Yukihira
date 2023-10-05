@@ -1,24 +1,33 @@
 export const styles = {
     root: {
         backgroundColor: '#A9CEC2',
-        flexGrow: 1
+        boxSizing: 'border-box',
+        margin: 0,
+        padding: 0
     },
 
     image: {
         display: 'flex',
         height: '200px',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 'auto'
     },
 
-    sideimg:{
-        widht:'4px'
+    grid1: {
+        padding: 0
     },
 
-    grid1:{
-        padingLeft: '1px',
+    grid2: {
+        padding: 0,
+        marginRight: '0px',
+        boxSizing: 'border-box'
+
     },
 
-    text:{
-        marginLeft: '8px',
+    text: {
+        marginLeft: '15px',
+        paddingRight: '10px'
     }
+
 }

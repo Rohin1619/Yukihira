@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
+import Container from '@mui/material/Container'
 
 import { styles } from './styles'
 
@@ -9,14 +10,14 @@ const AboutUs = () => {
     return (
         <>
             <Box sx={ styles.root }>
-                <Grid container spacing={ 2 } >
-                    <Grid xs={ 8 } sx={styles.grid1}>
+                <Grid container spacing={0}>
+                    <Grid xs={ 8 } sx={ styles.grid1 }>
                         <img
                             src="/BLogo.png"
                             alt="Centered Image"
                             style={ styles.image }
                         />
-                        <Typography variant='h5'sx={styles.text}>About Us</Typography>
+                        <Typography variant='h5' sx={ styles.text }>About Us</Typography>
                         <Typography variant='h4' sx={ styles.text }>Yukihira Dine: A Decade of Culinary Excellence in Kathmandu, Nepal</Typography>
                         <Typography variant='body1' sx={ styles.text }>
                             Nestled in the heart of Kathmandu, Nepal, Yukihira Dine has been a beloved family restaurant for the past 10 years. Situated in the vibrant neighborhood of Kapan, this establishment has carved a niche for itself as a go-to destination for locals and tourists alike, offering a delightful fusion of flavors that cater to a diverse range of palates.
@@ -66,12 +67,11 @@ const AboutUs = () => {
                             Whether you're a local resident or a traveler exploring Kathmandu, Yukihira Dine is a must-visit destination for those seeking a memorable dining experience. With its delicious cuisine, warm hospitality, and a decade of culinary excellence, it continues to be a cherished establishment in the heart of Kapan. Come and savor the flavors that have made Yukihira Dine a beloved institution for the past 10 years.
                         </Typography>
                     </Grid>
-                    <Grid xs={ 4 }>
-                        <img
-                            style={ styles.sideimg }
-                            src="/restaurant1.jpg"
-                            alt="Centered Image"
-                        />
+                    <Grid xs={ 4 } sx={ styles.grid2 }>
+                            <img
+                                style={ styles.sideimg }
+                                src="/restaurant1.jpg"
+                            />
                     </Grid>
                 </Grid>
             </Box>

@@ -4,6 +4,7 @@ import Homepage from './pages/HomePage/Homepage';
 import NavBar from './components/navbar/NavBar';
 import AboutUs from './pages/aboutUs/AboutUs';
 import Menu from './pages/menu/Menu';
+import Login from './pages/Login/login';
 
 const Routes = () => {
   return (
@@ -16,6 +17,8 @@ const Routes = () => {
           element={ <AboutUs /> } />
         <Route path='/menu'
           element={ <Menu /> } />
+        <Route path='/login'
+        element= {<Login /> } />
       </Switch>
     </>
   )
