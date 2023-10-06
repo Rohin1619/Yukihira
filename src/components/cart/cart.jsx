@@ -71,7 +71,7 @@ const Cart = ({ onCloseDialog }) => {
             <Container sx={ styles.root}>
                 <Box sx={ { flexGrow: 1 } }>
                     <Typography variant="h3" gutterBottom sx={ { justifyContent: "center", justifyItems: "center" } }>
-                        Your Products
+                        Your Orders
                     </Typography>
 
                     <TableContainer component={ Paper }>
