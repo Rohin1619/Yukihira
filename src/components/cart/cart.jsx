@@ -20,7 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
 
 import { removeItem, clearCart } from "../../stores/slices/cartSlice";
-// import { saveCart } from "../stores/slices/paymentSlice";
+import { saveCart } from "../../stores/slices/paymentSlice";
 
 import { styles } from "./styles";
 

@@ -15,7 +15,7 @@ const Menu = () => {
   return (
     <>
       <Box sx={styles.root}>
-        <SearchBar sx={styles.searchbar} />
+        <SearchBar />
         <Products data={ foodProducts } />
         <Products data= { beverageProducts } />
       </Box>

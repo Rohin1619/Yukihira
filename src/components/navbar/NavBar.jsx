@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -39,6 +40,7 @@ const pages = [
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const cartItems = useSelector((state) => state.cart.items);
   const [open, setOpen] = useState(false);
 
   const handleOpenNavMenu = (event) => {
@@ -54,6 +56,14 @@ const NavBar = () => {
   };
   const handleCloseDialog = () => {
     setOpen(false);
+  };
+
+  const calculateTotalItemCount = () => {
+    let totalCount = 0;
+    cartItems.forEach(() => {
+      totalCount++;
+    });
+    return totalCount;
   };
 
   return (
@@ -130,7 +140,7 @@ const NavBar = () => {
               sx={ styles.iconbtn }
               onClick={handleClickOpenDialog}
               >
-              <Badge badgeContent={ 2 } color="secondary">
+              <Badge badgeContent={ calculateTotalItemCount() } color="secondary">
                 <ShoppingCartIcon sx={ styles.cart } />
               </Badge>
             </IconButton>
