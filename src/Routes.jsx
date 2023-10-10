@@ -5,6 +5,7 @@ import NavBar from './components/navbar/NavBar';
 import AboutUs from './pages/aboutUs/AboutUs';
 import Menu from './pages/menu/Menu';
 import Login from './pages/Login/login';
+import Bill from './pages/bill/bill';
 
 const Routes = () => {
   return (
@@ -19,6 +20,8 @@ const Routes = () => {
           element={ <Menu /> } />
         <Route path='/login'
         element= {<Login /> } />
+        <Route path='/bill'
+        element={ < Bill /> } />
       </Switch>
     </>
   )

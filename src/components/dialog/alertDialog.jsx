@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {forwardRef, useState} from 'react'
+import { useDispatch } from "react-redux";
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -8,41 +9,38 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { useDispatch } from 'react-redux';
-
 import { clearCart } from "../../stores/slices/cartSlice";
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ ref } { ...props } />;
 });
 
-const alertDialog = (open, onClose) => {
+const AlertDialog = ({open,setOpen}) => {
     const dispatch = useDispatch();
 
-
     const handleClearCart = () => {
-        dispatch(clearCart());
-        handleCloseConfirmDialog();
+        dispatch(clearCart())
+        handleCloseDialog();
     }
-
-
+    const handleCloseDialog = () => {
+        setOpen(false);
+    };
     return (
         <>
             <Dialog
                 open={ open }
                 TransitionComponent={ Transition }
                 keepMounted
-                onClose={ onClose }
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle>{ "Use Google's location service?" }</DialogTitle>
+                <DialogTitle>{ "Clear Cart?" }</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Clear Cart?
+                        All of the items in the cart will be cleared.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={ onClose }>Disagree</Button>
+                    <Button onClick={ handleCloseDialog }>Disagree</Button>
                     <Button onClick={ handleClearCart }>Agree</Button>
                 </DialogActions>
             </Dialog>
@@ -50,4 +48,4 @@ const alertDialog = (open, onClose) => {
     )
 }
 
-export default alertDialog
+export default AlertDialog

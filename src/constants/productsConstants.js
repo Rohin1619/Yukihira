@@ -2,6 +2,7 @@ import {nanoid} from "nanoid";
 
 export const foodProducts = [
     {
+        id: nanoid(),
         category: "Momo",
         items: [
             {
@@ -61,6 +62,7 @@ export const foodProducts = [
             },
         ]
     }, {
+        id: nanoid(),
         category: "Pizza",
         items: [
             {
@@ -82,6 +84,7 @@ export const foodProducts = [
             },
         ]
     }, {
+        id: nanoid(),
         category: "Burger",
         items: [
             {
@@ -107,6 +110,7 @@ export const foodProducts = [
 
 export const beverageProducts = [
     {
+        id: nanoid(),
         category: "HotDrink",
         items: [
             {
@@ -148,6 +152,7 @@ export const beverageProducts = [
         ]
     },
     {
+        id: nanoid(),
         category: "ColdDrink",
         items: [
             {
@@ -166,6 +171,7 @@ export const beverageProducts = [
         ]
     },
     {
+        id: nanoid(),
         category: "Soda",
         items: [
             {
@@ -184,6 +190,7 @@ export const beverageProducts = [
         ]
     },
     {
+        id: nanoid(),
         category: "Juice",
         items: [
             {
@@ -201,6 +208,7 @@ export const beverageProducts = [
             },
         ]
     }, {
+        id: nanoid(),
         category: "Whisky",
         items: [
             {
@@ -272,6 +280,7 @@ export const beverageProducts = [
             },
         ]
     }, {
+        id: nanoid(),
         category: "Beer",
         items: [
             {
@@ -290,4 +299,3 @@ export const beverageProducts = [
         ]
     },
 ];
-

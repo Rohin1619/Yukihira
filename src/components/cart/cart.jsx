@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -18,11 +18,18 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Fab from '@mui/material/Fab';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-import { removeItem, clearCart } from "../../stores/slices/cartSlice";
+import { removeItem } from "../../stores/slices/cartSlice";
 import { saveCart } from "../../stores/slices/paymentSlice";
+import AlertDialog from "../dialog/alertDialog";
 
 import { styles } from "./styles";
+
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={ 6 } ref={ ref } variant="filled" { ...props } />;
+});
 
 const Cart = ({ onCloseDialog }) => {
 
@@ -30,6 +37,8 @@ const Cart = ({ onCloseDialog }) => {
     const cartItems = useSelector((state) => state.cart.items);
     const [productCounts, setProductCounts] = useState({});
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     useEffect(() => {
         const initialCounts = {};
@@ -53,27 +62,25 @@ const Cart = ({ onCloseDialog }) => {
         setProductCounts(updatedCounts);
     }
 
-    const calculateTotalPrice = () => {
-        let total = 0;
-        cartItems.forEach((cartItem) => {
-            const itemPrice = cartItem.price;
-            const itemCount = productCounts[cartItem.id];
-            total += itemPrice * itemCount;
-        });
-        return total;
-    };
-
     const isCartEmpty = cartItems.length === 0;
 
-    const handleClearCart = () => {
-        dispatch(clearCart())
-    }
+    const handleClickOpenDialog = () => {
+        setOpen(true);
+    };
 
-    const handleCheckout = () => {
+    const handleConfirmOrder = () => {
         dispatch(saveCart(cartItems));
         onCloseDialog();
-        navigate("/", { state: { productCounts } });
-    }
+        setSnackbarOpen(true);
+        navigate("/bill", { state: { productCounts } });
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbarOpen(false);
+    };
 
     return (
         <React.Fragment>
@@ -98,7 +105,7 @@ const Cart = ({ onCloseDialog }) => {
                             <TableBody>
                                 { cartItems.map((cartItem) => (
                                     <TableRow key={ cartItem.id }>
-                                        <TableCell>{ cartItem.label }{ cartItem.name}</TableCell>
+                                        <TableCell>{ cartItem.label ? `${cartItem.label} ${cartItem.name}` : cartItem.name }</TableCell>
                                         <TableCell align="right">{ cartItem.price }</TableCell>
                                         <TableCell align="center"><Fab
                                             color="primary"
@@ -142,24 +149,38 @@ const Cart = ({ onCloseDialog }) => {
                         { !isCartEmpty && (
                             <Button
                                 variant="contained"
-                                onClick={ handleCheckout }
+                                onClick={ handleConfirmOrder }
                                 sx={ { borderRadius: 12 } }
                             >
-                                Checkout
+                                Confirm Order
                             </Button>
                         ) }
                         { !isCartEmpty && (
                             <Button
                                 variant="contained"
-                                onClick={ handleClearCart }
+                                onClick={ handleClickOpenDialog }
                                 sx={ { borderRadius: 12, bgcolor: "red" } }
                             >
                                 Clear Items
                             </Button>
                         ) }
+                        <Snackbar
+                            open={ snackbarOpen }
+                            autoHideDuration={ 6000 }
+                            onClose={ handleCloseSnackbar }
+                        >
+                            <MuiAlert
+                                onClose={ handleCloseSnackbar }
+                                severity="success"
+                                sx={ { width: '100%' } }
+                            >
+                                Your Order has been placed
+                            </MuiAlert>
+                        </Snackbar>
                     </Box>
                 </Box>
             </Container>
+            <AlertDialog open={ open } setOpen={setOpen} />
         </React.Fragment>
     );
 };

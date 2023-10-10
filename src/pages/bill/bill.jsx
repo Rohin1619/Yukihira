@@ -34,22 +34,21 @@ function subtotal(items) {
     return items?.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
 }
 
-const bill = () => {
+const Bill = () => {
 
     const cartItems = useSelector((state) => state.cart.items);
-    const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
 
     const productCounts = location.state.productCounts;
-    const rows = cartItems.map((cartItem) => createRow(cartItem.title, productCounts[cartItem.id], cartItem.price));
+    const rows = cartItems.map((cartItem) => createRow([cartItem.name, cartItem.label] ,productCounts[cartItem.id], cartItem.price));
 
     const invoiceSubtotal = subtotal(rows);
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
     const handleCancel = () => {
-        navigate("/");
+        navigate("/menu");
     };
 
     const handleProceedToPayment = () => {
@@ -112,4 +111,4 @@ const bill = () => {
   )
 }
 
-export default bill
+export default Bill

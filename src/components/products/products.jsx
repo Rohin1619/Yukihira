@@ -7,7 +7,6 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -44,14 +43,11 @@ const Products = ({ data }) => {
                     <Typography variant="h4" sx={ styles.item }>
                         { menuItem.category }
                     </Typography>
-                    <TableContainer component={ Paper }>
+                    <TableContainer component={ Paper } >
                         <Table sx={ styles.table } aria-label="simple table">
                             <TableBody sx={ styles.tablebody }>
                                 { menuItem.items.map((item) => (
-                                    <TableRow
-                                        key={ `item-${item.id}` }
-                                        sx={ { "&:last-child td, &:last-child th": { border: 0 } } }
-                                    >
+                                    <TableRow key={ `item-${item.id}` } sx={ styles.namerow } >
                                         <TableCell component="th" scope="row">
                                             { item.name }
                                         </TableCell>

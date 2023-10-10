@@ -17,13 +17,14 @@ export const styles = {
     },
 
     typerow: {
-        display: "flex",
-        justifyContent: "space-between",
+        display: 'flex',
         textAlign: "center",
         fontStyle: "italic",
-        // marginLeft: '200px',
-        minWidth: '0px'
+    },
 
+    namerow:{
+        rowSpan: 5,
+        color: "white",
     },
 
     tablebody: {
@@ -34,7 +35,6 @@ export const styles = {
     btn1: {
         paddingLeft: "0px",
         marginLeft: "auto",
-        marginRight: "auto"
     },
 
     label: {
