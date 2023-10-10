@@ -20,24 +20,33 @@ const Products = ({ data }) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items)
     const hasType = ['Momo', 'Whisky']
+
+    const handleAddToCart1 = (type) => {
+        const isProductInCart = cartItems.some((cartItem) => cartItem.id === type.id);
+
+        if (!isProductInCart) {
+            dispatch(addItem(type));
+        }
+    };
+
+    const handleAddToCart2 = (item) => {
+        const isProductInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+
+        if (!isProductInCart) {
+            dispatch(addItem(item));
+        }
+    };
+
     return (
         <Box sx={ styles.root }>
             { data.map((menuItem) => (
                 <div key={ menuItem.id }>
-                    <Typography variant="h4" sx={ { textAlign: "center" } }>
+                    <Typography variant="h4" sx={ styles.item }>
                         { menuItem.category }
                     </Typography>
                     <TableContainer component={ Paper }>
-                        <Table sx={ { minWidth: 650 } } aria-label="simple table">
-                            <TableHead>
-                                <TableRow key={ `header-${menuItem.id}` }>
-                                    <TableCell>Name</TableCell>
-                                    { hasType.includes(menuItem.category)? (
-                                        <TableCell align="right">Price</TableCell>
-                                    ) : null }
-                                </TableRow>
-                            </TableHead>
-                            <TableBody sx={styles.tablebody}>
+                        <Table sx={ styles.table } aria-label="simple table">
+                            <TableBody sx={ styles.tablebody }>
                                 { menuItem.items.map((item) => (
                                     <TableRow
                                         key={ `item-${item.id}` }
@@ -46,31 +55,32 @@ const Products = ({ data }) => {
                                         <TableCell component="th" scope="row">
                                             { item.name }
                                         </TableCell>
-                                        { menuItem.category === "Momo" ||
-                                            menuItem.category === "Whisky"
+                                        { hasType.includes(menuItem.category)
                                             ? item.types.map((type) => (
-                                                <TableRow key={ `type-${type.id}` } sx={ styles.typerow}>
+                                                <TableRow key={ `type-${type.id}` } sx={ styles.typerow }>
                                                     <TableCell align="right">{ type.label }</TableCell>
                                                     <TableCell align="right">Rs.{ type.price }</TableCell>
-                                                    <TableCell align="right">
-                                                        <Button variant="outlined" color="primary">
-                                                            Add
+                                                    <TableCell align="right" sx={ styles.btn1 }>
+                                                        <Button
+                                                            variant="outlined"
+                                                            color="primary"
+                                                            onClick={ () => handleAddToCart1(type) }
+                                                            disabled={ cartItems.some((cartItem) => cartItem.id === type.id) }>
+                                                            { cartItems.some((cartItem) => cartItem.id === type.id) ? "In Cart" : "Add" }
                                                         </Button>
                                                     </TableCell>
                                                 </TableRow>
-                                                
                                             ))
                                             : <TableCell align="right">Rs.{ item.price }</TableCell> }
-                                        { menuItem.category !== "Momo" &&
-                                            menuItem.category !== "Whisky" ?(
+                                        { !hasType.includes(menuItem.category) ? (
                                             <TableCell align="right">
-                                                    <Button
-                                                        variant="outlined"
-                                                        onClick={ () => handleAddToCart(product) }
-                                                        disabled={ cartItems.some((cartItem) => cartItem.id === product.id) }
-                                                    >
-                                                        { cartItems.some((cartItem) => cartItem.id === product.id) ? "In Cart" : "Add" }
-                                                    </Button>
+                                                <Button
+                                                    variant="outlined"
+                                                    onClick={ () => handleAddToCart2(item) }
+                                                    disabled={ cartItems.some((cartItem) => cartItem.id === item.id) }
+                                                >
+                                                    { cartItems.some((cartItem) => cartItem.id === item.id) ? "In Cart" : "Add" }
+                                                </Button>
                                             </TableCell>
                                         ) : null }
                                     </TableRow>

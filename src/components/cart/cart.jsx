@@ -53,6 +53,16 @@ const Cart = ({ onCloseDialog }) => {
         setProductCounts(updatedCounts);
     }
 
+    const calculateTotalPrice = () => {
+        let total = 0;
+        cartItems.forEach((cartItem) => {
+            const itemPrice = cartItem.price;
+            const itemCount = productCounts[cartItem.id];
+            total += itemPrice * itemCount;
+        });
+        return total;
+    };
+
     const isCartEmpty = cartItems.length === 0;
 
     const handleClearCart = () => {
@@ -68,7 +78,7 @@ const Cart = ({ onCloseDialog }) => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container sx={ styles.root}>
+            <Container sx={ styles.root }>
                 <Box sx={ { flexGrow: 1 } }>
                     <Typography variant="h3" gutterBottom sx={ { justifyContent: "center", justifyItems: "center" } }>
                         Your Orders
@@ -80,37 +90,39 @@ const Cart = ({ onCloseDialog }) => {
                                 <TableRow>
                                     <TableCell>Products</TableCell>
                                     <TableCell align="right">Price</TableCell>
-                                    <TableCell align="right">Quantity</TableCell>
-                                    <TableCell align="right">Actions</TableCell>
+                                    <TableCell align="center">Quantity</TableCell>
+                                    <TableCell align="center">Total Price</TableCell>
+                                    <TableCell align="right">Remove</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 { cartItems.map((cartItem) => (
                                     <TableRow key={ cartItem.id }>
-                                        <TableCell>{ cartItem.title }</TableCell>
+                                        <TableCell>{ cartItem.label }{ cartItem.name}</TableCell>
                                         <TableCell align="right">{ cartItem.price }</TableCell>
-                                        <TableCell align="right">{ productCounts[cartItem.id] }</TableCell>
-                                        <TableCell align="right">
+                                        <TableCell align="center"><Fab
+                                            color="primary"
+                                            size="small"
+                                            aria-label="Decrement value"
+                                            onClick={ () =>
+                                                handleCartAddSubtract(cartItem.id, "SUBTRACT")
+                                            }
+                                            sx={ { marginRight: 2 } }
+                                        >
+                                            <RemoveIcon />
+                                        </Fab>
+                                            { productCounts[cartItem.id] }
                                             <Fab
                                                 color="primary"
                                                 size="small"
                                                 aria-label="Increment value"
                                                 onClick={ () => handleCartAddSubtract(cartItem.id, "ADD") }
-                                                sx={ { marginRight: 2 } }
-                                            >
-                                                <AddIcon />
-                                            </Fab>
-                                            <Fab
-                                                color="primary"
-                                                size="small"
-                                                aria-label="Decrement value"
-                                                onClick={ () =>
-                                                    handleCartAddSubtract(cartItem.id, "SUBTRACT")
-                                                }
                                                 sx={ { marginLeft: 2, marginRight: 2 } }
                                             >
-                                                <RemoveIcon />
-                                            </Fab>
+                                                <AddIcon />
+                                            </Fab></TableCell>
+                                        <TableCell align="center">{ cartItem.price * productCounts[cartItem.id] }</TableCell>
+                                        <TableCell align="right">
                                             <Fab
                                                 color="primary"
                                                 size="small"

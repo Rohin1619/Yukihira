@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, { forwardRef } from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
