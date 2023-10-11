@@ -20,11 +20,12 @@ const Products = ({ data }) => {
     const cartItems = useSelector((state) => state.cart.items)
     const hasType = ['Momo', 'Whisky']
 
-    const handleAddToCart1 = (type) => {
+    const handleAddToCart1 = (type, item) => {
         const isProductInCart = cartItems.some((cartItem) => cartItem.id === type.id);
+        console.log(type, item)
 
         if (!isProductInCart) {
-            dispatch(addItem(type));
+            dispatch(addItem({...type,name:item}, item));
         }
     };
 
@@ -60,7 +61,7 @@ const Products = ({ data }) => {
                                                         <Button
                                                             variant="outlined"
                                                             color="primary"
-                                                            onClick={ () => handleAddToCart1(type) }
+                                                            onClick={ () => handleAddToCart1(type, item.name) }
                                                             disabled={ cartItems.some((cartItem) => cartItem.id === type.id) }>
                                                             { cartItems.some((cartItem) => cartItem.id === type.id) ? "In Cart" : "Add" }
                                                         </Button>

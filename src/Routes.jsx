@@ -6,6 +6,7 @@ import AboutUs from './pages/aboutUs/AboutUs';
 import Menu from './pages/menu/Menu';
 import Login from './pages/Login/login';
 import Bill from './pages/bill/bill';
+import Payment from './pages/payment/Payment';
 
 const Routes = () => {
   return (
@@ -22,6 +23,8 @@ const Routes = () => {
         element= {<Login /> } />
         <Route path='/bill'
         element={ < Bill /> } />
+        <Route path='/bill/payment'
+        element={ < Payment />} />
       </Switch>
     </>
   )
