@@ -3,18 +3,17 @@ export const styles = {
         marginLeft: 'auto',
         padding: '40px',
         paddingTop: '10px',
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        // height: '100vh'
-
+        display: 'flex',
+        flexDirection: 'column'
     },
 
     searchbar: {
         justifyContent: 'center'
     },
 
-    products:{
-        
+    products: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '80vw'
     }
 }

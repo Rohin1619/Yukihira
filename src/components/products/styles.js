@@ -33,12 +33,25 @@ export const styles = {
     },
 
     btn1: {
-        paddingLeft: "0px",
-        marginLeft: "auto",
+        paddingLeft: "16px",
+        width: '400px'
     },
 
     label: {
-        marginLeft: '10px',
-        paddingLeft: '10px'
+        marginLeft: '0px',
+        paddingLeft: '10px',
+        width: '200px',
+    },
+
+    labelPrice:{
+        width:'400px'
+    },
+
+    itemPrice:{
+        width:'auto'
+    },
+
+    itemName:{
+        width:'500px'
     }
 }

@@ -15,14 +15,13 @@ import { addItem } from '../../stores/slices/cartSlice';
 
 import { styles } from "./styles";
 
-const Products = ({ data }) => {
+const Products = ({ data}) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.items)
     const hasType = ['Momo', 'Whisky']
 
     const handleAddToCart1 = (type, item) => {
         const isProductInCart = cartItems.some((cartItem) => cartItem.id === type.id);
-        console.log(type, item)
 
         if (!isProductInCart) {
             dispatch(addItem({...type,name:item}, item));
@@ -49,14 +48,14 @@ const Products = ({ data }) => {
                             <TableBody sx={ styles.tablebody }>
                                 { menuItem.items.map((item) => (
                                     <TableRow key={ `item-${item.id}` } sx={ styles.namerow } >
-                                        <TableCell component="th" scope="row">
+                                        <TableCell component="th" scope="row" sx={styles.itemName}>
                                             { item.name }
                                         </TableCell>
                                         { hasType.includes(menuItem.category)
                                             ? item.types.map((type) => (
                                                 <TableRow key={ `type-${type.id}` } sx={ styles.typerow }>
-                                                    <TableCell align="right">{ type.label }</TableCell>
-                                                    <TableCell align="right">Rs.{ type.price }</TableCell>
+                                                    <TableCell align="right" sx={styles.label}>{ type.label }</TableCell>
+                                                    <TableCell align="right" sx={styles.labelPrice}>Rs.{ type.price }</TableCell>
                                                     <TableCell align="right" sx={ styles.btn1 }>
                                                         <Button
                                                             variant="outlined"
@@ -68,7 +67,7 @@ const Products = ({ data }) => {
                                                     </TableCell>
                                                 </TableRow>
                                             ))
-                                            : <TableCell align="right">Rs.{ item.price }</TableCell> }
+                                            : <TableCell align="right" sx={styles.itemPrice}>Rs.{ item.price }</TableCell> }
                                         { !hasType.includes(menuItem.category) ? (
                                             <TableCell align="right">
                                                 <Button
