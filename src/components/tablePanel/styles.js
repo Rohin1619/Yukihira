@@ -3,7 +3,7 @@ export const styles = {
         padding: '16px',
         flexGrow: 1,
         display: 'flex',
-        height: 224
-
+        height: 224,
+        position: 'sticky'
     }
 }

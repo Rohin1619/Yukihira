@@ -69,7 +69,7 @@ const Products = ({ data}) => {
                                             ))
                                             : <TableCell align="right" sx={styles.itemPrice}>Rs.{ item.price }</TableCell> }
                                         { !hasType.includes(menuItem.category) ? (
-                                            <TableCell align="right">
+                                            <TableCell align="right" sx={styles.btn1}>
                                                 <Button
                                                     variant="outlined"
                                                     onClick={ () => handleAddToCart2(item) }

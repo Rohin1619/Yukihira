@@ -6,9 +6,7 @@ export const styles = {
         boxSizing: 'border-box',
         padding: '0',
         margin: '0',
-        position: 'relative',
         overflowY: 'hidden',
-        height: 'calc(100vh - 80px)'
     },
 
     overlay: {

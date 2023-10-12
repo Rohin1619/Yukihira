@@ -1,8 +1,8 @@
 export const styles = {
     root: {
-        margin: 0,
+        marginRight: '0px',
         padding: 0,
-        backgroundColor: '#191919'
+        backgroundColor: '#191919',
     },
 
     title1: {
@@ -17,14 +17,15 @@ export const styles = {
         letterSpacing: '.3rem',
         color: 'inherit',
         textDecoration: 'none'
-
     },
 
 
     appbar: {
         backgroundColor: '#191919',
         paddingLeft: '0px',
-        marginLeft: '0px'
+        marginLeft: '0px',
+        position: 'fixed',
+        zIndex:'1'
     },
 
     image: {
