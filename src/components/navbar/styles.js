@@ -25,7 +25,7 @@ export const styles = {
         paddingLeft: '0px',
         marginLeft: '0px',
         position: 'fixed',
-        zIndex:'1'
+        zIndex:1
     },
 
     image: {

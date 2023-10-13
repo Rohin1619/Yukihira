@@ -1,13 +1,17 @@
 export const styles = {
     root: {
-        justifyContent: 'center',
+        position: 'fixed',
+        top: 90,
         display: 'flex',
-        flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#e7e6e8',
+        borderRadius: '24px',
+        width: '650px',
+        zIndex: 1
     },
 
     searchfield: {
-        width: '600px'
+        width: '550px'
     }
 }

@@ -4,13 +4,14 @@ export const styles = {
         padding: '40px',
         paddingTop: '90px',
         display: 'flex',
-        flexDirection: 'column',
-        // zIndex: -1
+        flexDirection: 'column'
     },
 
     searchbar: {
+        display:'flex',
         justifyContent: 'center',
-        
+        width: '100%',
+        backgroundColor: '#000000',
     },
 
     products: {
@@ -20,7 +21,7 @@ export const styles = {
         marginTop: '50px'
     },
 
-    itemTab:{
+    itemTab: {
         position: '',
         backgroundColor: '#e8e8e8',
         borderRadius: '5px'

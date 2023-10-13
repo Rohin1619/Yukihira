@@ -4,12 +4,12 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 
 const images = [
-    '/imgSlide/burger.jpg', 
-    '/imgSlide/pizza.jpg',
-    '/imgSlide/momo.jpg',
-    '/imgSlide/blended mocha.jpg',
-    '/imgSlide/jd.jpg',
-    '/imgSlide/latte.jpg'
+    '/imgSlide/burger.png', 
+    '/imgSlide/pizza.png',
+    '/imgSlide/momo.png',
+    '/imgSlide/cold.png',
+    '/imgSlide/jd.png',
+    '/imgSlide/hot.png'
 ];
 
 const AutomaticSlideshow = () => {
@@ -32,7 +32,7 @@ const AutomaticSlideshow = () => {
                 alt="Slideshow"
                 height="300"
                 image={ images[myIndex] }
-                style={ { objectFit: 'cover' } }
+                sx={ { objectFit: 'cover', mt: '60px' } }
             />
         </Card>
     );

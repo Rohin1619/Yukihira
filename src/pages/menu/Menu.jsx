@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom';
 
 import Box from '@mui/material/Box'
 
@@ -10,10 +11,12 @@ import AutomaticSlideshow from '../../components/imageSlide/imgSlide';
 import { styles } from './styles'
 
 const Menu = () => {
+  const history = useHistory();
+
   return (
     <>
-      <Box sx={ styles.root }>
-        <Box sx={ styles.searchbar }>
+      <Box id="mainbox" sx={ styles.root }>
+        <Box id="innerBox" sx={ styles.searchbar }>
           <SearchBar />
         </Box>
         <AutomaticSlideshow />

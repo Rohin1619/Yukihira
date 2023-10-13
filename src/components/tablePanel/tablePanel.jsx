@@ -5,8 +5,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import Products from '../products/products';
-
 import { foodProducts, beverageProducts } from '../../constants/productsConstants';
 import { styles } from './styles';
 
@@ -43,7 +41,7 @@ function a11yProps(index) {
     };
 }
 
-const categories = ['Category 1', 'Category 2', 'Category 3'];
+const categories = ['Food', 'Beverage'];
 
 export default function TabWithProducts() {
     const [value, setValue] = useState(0);
@@ -52,13 +50,11 @@ export default function TabWithProducts() {
         setValue(newValue);
     };
 
-    const allProducts = [...foodProducts, ...beverageProducts];
+    const products = value === 0 ? foodProducts : beverageProducts;
 
     return (
         <div>
-            <Box
-                sx={ styles.root }
-            >
+            <Box sx={ styles.root }>
                 <Tabs
                     orientation="vertical"
                     variant="scrollable"
@@ -71,12 +67,20 @@ export default function TabWithProducts() {
                         <Tab label={ category } { ...a11yProps(index) } key={ index } />
                     )) }
                 </Tabs>
-                { categories.map((category, index) => (
+                { products.map((productCategory, index) => (
                     <TabPanel value={ value } index={ index } key={ index }>
-                        {/* <Products
-                            category={ category }
-                            products={ allProducts.filter((product) => product.category === category) }
-                        /> */}
+                        { productCategory.category }
+                        { productCategory.items.map((item) => (
+                            <div key={ item.id }>
+                                { item.name }
+                                { item.types &&
+                                    item.types.map((type) => (
+                                        <div key={ type.id }>
+                                            { type.label }: { type.price }
+                                        </div>
+                                    )) }
+                            </div>
+                        )) }
                     </TabPanel>
                 )) }
             </Box>
