@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import Box  from '@mui/material/Box';
+import Box from '@mui/material/Box';
 
 import { styles } from './styles';
 
@@ -40,37 +40,37 @@ const Payment = () => {
         setModalControl(!modalControl)
     };
 
-  return (
-    <>
-          <Box>
-              <Typography variant='h6'>Choose your payment method!</Typography>
-              { digitalpay.map((pay) => (
-                  <Button key={ pay.label } onClick={ () => handleClickOpen(pay) }>{ pay.label }</Button>
-              )) }
-          </Box>
-          <Dialog onClose={ handleClose } open={ modalControl }>
-              <DialogTitle sx={ { m: 0, p: 2 } }>{ selectedDigitalPay?.label }</DialogTitle>
-              <IconButton
-                  aria-label="close"
-                  onClick={ handleClose }
-                  sx={ {
-                      position: 'absolute',
-                      right: 8,
-                      top: 8,
-                      color: (theme) => theme.palette.grey[500],
-                  } }
-              >
-                  <CloseIcon />
-              </IconButton>
-              <DialogContent dividers sx={ { objectFit: 'contain', height: 700 } }>
-                  { selectedDigitalPay && (
-                      <img src={ `/${selectedDigitalPay.Image}` } alt={ selectedDigitalPay.label }
-                          style={ styles.img } />
-                  ) }
-              </DialogContent>
-          </Dialog>
-    </>
-  )
+    return (
+        <>
+            <Box sx={styles.box}>
+                <Typography variant='h6'>Choose your payment method!</Typography>
+                { digitalpay.map((pay) => (
+                    <Button key={ pay.label } onClick={ () => handleClickOpen(pay) }>{ pay.label }</Button>
+                )) }
+            </Box>
+            <Dialog onClose={ handleClose } open={ modalControl }>
+                <DialogTitle sx={ { m: 0, p: 2 } }>{ selectedDigitalPay?.label }</DialogTitle>
+                <IconButton
+                    aria-label="close"
+                    onClick={ handleClose }
+                    sx={ {
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                    } }
+                >
+                    <CloseIcon />
+                </IconButton>
+                <DialogContent dividers sx={ { objectFit: 'contain', height: 700 } }>
+                    { selectedDigitalPay && (
+                        <img src={ `/${selectedDigitalPay.Image}` } alt={ selectedDigitalPay.label }
+                            style={ styles.img } />
+                    ) }
+                </DialogContent>
+            </Dialog>
+        </>
+    )
 }
 
 export default Payment

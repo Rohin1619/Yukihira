@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 
 import { foodProducts, beverageProducts } from '../../constants/productsConstants';
 import { styles } from './styles';
+
+const categories = [
+  { label: 'FOOD', products: foodProducts },
+  { label: 'BEVERAGE', products: beverageProducts },
+];
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -28,62 +33,38 @@ function TabPanel(props) {
     );
 }
 
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`,
-    };
-}
-
-const categories = ['Food', 'Beverage'];
-
 export default function TabWithProducts() {
-    const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    const products = value === 0 ? foodProducts : beverageProducts;
-
-    return (
-        <div>
-            <Box sx={ styles.root }>
-                <Tabs
-                    orientation="vertical"
-                    variant="scrollable"
-                    value={ value }
-                    onChange={ handleChange }
-                    aria-label="Vertical tabs example"
-                    sx={ { borderRight: 1, borderColor: 'divider' } }
-                >
-                    { categories.map((category, index) => (
-                        <Tab label={ category } { ...a11yProps(index) } key={ index } />
-                    )) }
-                </Tabs>
-                { products.map((productCategory, index) => (
-                    <TabPanel value={ value } index={ index } key={ index }>
-                        { productCategory.category }
-                        { productCategory.items.map((item) => (
-                            <div key={ item.id }>
-                                { item.name }
-                                { item.types &&
-                                    item.types.map((type) => (
-                                        <div key={ type.id }>
-                                            { type.label }: { type.price }
-                                        </div>
-                                    )) }
-                            </div>
-                        )) }
-                    </TabPanel>
-                )) }
-            </Box>
-        </div>
-    );
+  return (
+    <div>
+      <Box sx={styles.root}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          sx={{ borderRight: 1, borderColor: 'divider' }}
+        >
+          {categories.map((category, index) => (
+            <Tab label={category.label} key={index} />
+          ))}
+        </Tabs>
+        {categories.map((category, index) => (
+          <TabPanel value={value} index={index} key={index}>
+            {category.products.map((productCategory) => (
+              <div key={productCategory.id}>
+                {productCategory.category}
+              </div>
+            ))}
+          </TabPanel>
+        ))}
+      </Box>
+    </div>
+  );
 }

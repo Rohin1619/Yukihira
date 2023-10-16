@@ -39,7 +39,7 @@ const Products = ({ data}) => {
     return (
         <Box sx={ styles.root }>
             { data.map((menuItem) => (
-                <div key={ menuItem.id }>
+                <div key={ menuItem.id } id={ menuItem.category }>
                     <Typography variant="h4" sx={ styles.item }>
                         { menuItem.category }
                     </Typography>

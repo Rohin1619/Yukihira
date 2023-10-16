@@ -5,5 +5,9 @@ export const styles = {
         maxHeight: '100%',
         maxWidth: '100%',
         objectFit: 'fill'
+    },
+
+    box:{
+        paddingTop: '90px'
     }
 };

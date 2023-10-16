@@ -58,7 +58,7 @@ const Bill = () => {
   return (
     <>
           <TableContainer component={ Paper }>
-              <Table sx={ { minWidth: 700 } } aria-label="spanning table">
+              <Table sx={ { minWidth: 700, mt:10  } } aria-label="spanning table">
                   <TableHead>
                       <TableRow>
                           <TableCell align="center" colSpan={ 3 }>
