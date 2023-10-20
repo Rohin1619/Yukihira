@@ -48,11 +48,11 @@ const Bill = () => {
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
     const handleCancel = () => {
-        navigate("/menu");
+        navigate("/");
     };
 
     const handleProceedToPayment = () => {
-        navigate('/bill/payment')
+        navigate('/bill/payment', { state: { total: invoiceTotal } });
     }
     
   return (

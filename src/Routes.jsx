@@ -13,11 +13,11 @@ const Routes = () => {
     <>
       <NavBar />
       <Switch>
-        <Route path='/'
+        <Route path='/home'
         element={<Homepage />} />
         <Route path='/aboutus'
           element={ <AboutUs /> } />
-        <Route path='/menu'
+        <Route path='/'
           element={ <Menu /> } />
         <Route path='/login'
         element= {<Login /> } />

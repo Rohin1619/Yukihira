@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useLocation } from "react-router-dom";
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -28,7 +30,9 @@ const Payment = () => {
     ]
 
     const [selectedDigitalPay, setSelectedDigitalPay] = useState(null);
+    const location = useLocation();
     const [modalControl, setModalControl] = useState(false);
+    const total = location.state.total
 
     const handleClickOpen = (pay) => {
         setSelectedDigitalPay(pay);
@@ -43,6 +47,7 @@ const Payment = () => {
     return (
         <>
             <Box sx={styles.box}>
+                <Typography variant='h3'> Your total is: {total}</Typography>
                 <Typography variant='h6'>Choose your payment method!</Typography>
                 { digitalpay.map((pay) => (
                     <Button key={ pay.label } onClick={ () => handleClickOpen(pay) }>{ pay.label }</Button>

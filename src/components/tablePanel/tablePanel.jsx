@@ -14,23 +14,23 @@ const categories = [
 ];
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={ value !== index }
-            id={ `vertical-tabpanel-${index}` }
-            aria-labelledby={ `vertical-tab-${index}` }
-            { ...other }
-        >
-            { value === index && (
-                <Box sx={ { p: 3 } }>
-                    <Typography>{ children }</Typography>
-                </Box>
-            ) }
-        </div>
-    );
+  return (
+    <div
+      role="tabpanel"
+      hidden={ value !== index }
+      id={ `vertical-tabpanel-${index}` }
+      aria-labelledby={ `vertical-tab-${index}` }
+      { ...other }
+    >
+      { value === index && (
+        <Box sx={ { p: 3 } }>
+          <Typography>{ children }</Typography>
+        </Box>
+      ) }
+    </div>
+  );
 }
 
 export default function TabWithProducts() {
@@ -42,28 +42,29 @@ export default function TabWithProducts() {
 
   return (
     <div>
-      <Box sx={styles.root}>
+      <Box sx={ styles.root }>
         <Tabs
           orientation="vertical"
           variant="scrollable"
-          value={value}
-          onChange={handleChange}
+          value={ value }
+          onChange={ handleChange }
           aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
+          sx={ { borderRight: 1, borderColor: 'divider' } }
         >
-          {categories.map((category, index) => (
-            <Tab label={category.label} key={index} />
-          ))}
+          { categories.map((category, index) => (
+            <Tab label={ category.label } key={ index } />
+          )) }
         </Tabs>
-        {categories.map((category, index) => (
-          <TabPanel value={value} index={index} key={index}>
-            {category.products.map((productCategory) => (
-              <div key={productCategory.id}>
-                {productCategory.category}
-              </div>
-            ))}
+        { categories.map((category, index) => (
+          <TabPanel value={ value } index={ index } key={ index }>
+            { category.products.map((productCategory) => (
+              <Link to={ `#${productCategory.category}` } smooth={ true } key={ productCategory.id }>
+                { productCategory.category }
+              </Link>
+
+            )) }
           </TabPanel>
-        ))}
+        )) }
       </Box>
     </div>
   );

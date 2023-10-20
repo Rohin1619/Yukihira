@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from "react-router-dom";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,19 +19,18 @@ import CartDialog from '../dialog/cartDialog';
 
 import { styles } from './styles'
 
-
 const pages = [
   {
     label: 'Home',
-    link: '/',
+    link: '/home',
   },
   {
     label: 'Menu',
-    link: '/menu',
+    link: '/',
   },
   {
     label: 'Contact',
-    link: '/',
+    link: '/aboutus',
   },
   {
     label: 'Feedback',
@@ -42,13 +42,15 @@ const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const cartItems = useSelector((state) => state.cart.items);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (destination) => {
     setAnchorElNav(null);
+    navigate(destination)
   };
 
   const handleClickOpenDialog = () => {
@@ -89,9 +91,8 @@ const NavBar = () => {
               { pages.map((page) => (
                 <Button
                   variant='text'
-                  href="/"
                   key={ page.label }
-                  onClick={ handleCloseNavMenu }
+                  onClick={ () => handleCloseNavMenu(page.link) }
                   sx={ styles.menu }
                 >
                   { page.label }
@@ -138,8 +139,8 @@ const NavBar = () => {
             <IconButton
               aria-label="cart"
               sx={ styles.iconbtn }
-              onClick={handleClickOpenDialog}
-              >
+              onClick={ handleClickOpenDialog }
+            >
               <Badge badgeContent={ calculateTotalItemCount() } color="secondary">
                 <ShoppingCartIcon sx={ styles.cart } />
               </Badge>
